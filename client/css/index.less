@@ -1,0 +1,265 @@
+@dayBg : #eff3f6;
+@nightBg: #232e4b;
+@whiteTheme: #fff;
+@font16: 16px;
+@titleColor: skyblue;
+@blackFont: #000;
+
+html {
+    font-family: Helvetica;
+    font-size: @font16;
+    color: @blackFont;
+}
+
+body {
+    margin: 0;
+    background-color: @dayBg;
+    font-family: helvetica;
+    font-size: 1rem;
+}
+
+/* 导航栏 */
+#nav {
+    width: 100%;
+    height: 3.2rem;
+    position: fixed;
+    left: 0;
+    top: 0;
+    // padding-left: 20px;
+    background-color: @whiteTheme;
+    z-index: 2;
+
+    .logo {
+        width: 2rem;
+        // height: 2.2rem;
+        margin: .5rem 1rem;
+    }
+
+    .site-name {
+        // height: 3.2rem;
+        line-height: 3.2rem;
+        position: absolute;
+    }
+
+    .day-night {
+        width: 2.2rem;
+        // height: 2.2rem;
+        position: absolute;
+        right: 1rem;
+        line-height: 3.2rem;
+        margin: .5rem 0;
+    }
+}
+
+// banner
+.banner {
+    margin-top: 3rem;
+    width: 100vw;
+    height: 20rem;
+    background-image: url("../images/banner-min.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    // align-items: unset;
+
+    .motto {
+        margin-top: 3.4rem;
+        font-family: helvetica;
+        font-size: 2.5rem;
+        font-weight: bolder;
+        color: @whiteTheme;
+    }
+}
+
+
+/* 内容 */
+#main {
+    position: absolute;
+    top: 13rem;
+    // ul
+    background-color: @whiteTheme;
+    // margin: 1rem 10rem;
+    padding: 0 3rem;
+    // margin-bottom: 30rem;
+
+    .content-item {
+        // li
+        margin: 1rem 0;
+        padding: 2rem 10rem;
+        // background-color: #fff;
+
+    }
+
+    .title {
+        font-size: 2.8rem;
+        color: @titleColor;
+
+        &:hover {
+            border-bottom: 2px solid skyblue;
+
+        }
+    }
+
+    .profile {
+        font-size: 1.2rem;
+        font-weight: lighter;
+    }
+
+    .preview {
+        margin: 1rem 0;
+        overflow: hidden;
+
+        .preview-img {
+            width: 100%;
+            // height: inherit;
+            // width: inherit;
+            height: 20rem;
+            border-radius: .5rem;
+        }
+
+
+    }
+
+    .foot {
+        display: flex;
+
+        .foot-item {
+            font-weight: lighter;
+
+            &:nth-child(1) {
+                flex: 1;
+            }
+
+            &:nth-child(2) {
+                flex: 3;
+                color: skyblue;
+            }
+
+            .tag {
+                margin: 0 .4rem;
+            }
+        }
+
+
+    }
+
+
+}
+
+@media screen and (max-width:350px) {
+    html {
+        font-size: 8px;
+    }
+
+    #main {
+        margin: 1rem 1rem;
+
+        .content-item {
+            // li
+            padding: 2rem 0.5rem;
+        }
+    }
+}
+
+@media screen and (min-width:350px) {
+    html {
+        font-size: 10px;
+    }
+
+    #main {
+        margin: 1rem 1rem;
+
+        .content-item {
+            // li
+            padding: 2rem 1rem;
+        }
+    }
+}
+
+@media screen and (min-width:500px) {
+    html {
+        font-size: 12px;
+    }
+
+    #main {
+        margin: 1rem 1rem;
+
+        .content-item {
+            // li
+            padding: 2rem 2rem;
+        }
+    }
+}
+
+@media screen and (min-width:650px) {
+    html {
+        font-size: 14px;
+    }
+
+    #main {
+        margin: 1rem 1rem;
+
+        .content-item {
+            // li
+            padding: 2rem 3rem;
+        }
+    }
+}
+
+@media screen and (min-width:800px) {
+    html {
+        font-size: 14px;
+    }
+
+    #main {
+        margin: 1rem 4rem;
+
+        .content-item {
+            // li
+            padding: 2rem 4rem;
+        }
+    }
+}
+
+@media screen and (min-width:950px) {
+    html {
+        font-size: 16px;
+    }
+
+    #main {
+        margin: 1rem 4rem;
+
+        .content-item {
+            // li
+            padding: 2rem 4rem;
+        }
+    }
+}
+
+@media screen and (min-width:1100px) {
+    #main {
+        margin: 1rem 8rem;
+
+        .content-item {
+            // li
+            padding: 2rem 7rem;
+        }
+    }
+}
+
+
+/* 底部 */
+#footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20rem;
+    // background-color: @bgColor;
+
+    a {
+        // color: #333;
+        font-weight: lighter;
+    }
+}
