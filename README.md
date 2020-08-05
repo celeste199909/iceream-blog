@@ -10,11 +10,7 @@
 
 * 进入项目根目录
 
-  `cd exercise-book-master` 
-
-* 初始化package.json
-
-  `npm init`
+  `cd exercise-book` 
 
 * 安装依赖
 
@@ -22,4 +18,4 @@
 
 * 启动项目
 
-  `node main.js`
+  `node main`
