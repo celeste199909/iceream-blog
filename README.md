@@ -6,20 +6,20 @@
 
 * 克隆项目到本地
 
-    `git clone`
+  `git clone`
 
 * 进入项目根目录
 
-    `cd exercise-book-master` 
+  `cd exercise-book-master` 
 
 * 初始化package.json
 
-    `npm init`
+  `npm init`
 
 * 安装依赖
 
-    `npm install`
+  `npm install`
 
 * 启动项目
 
-    `node main.js`
+  `node main.js`
