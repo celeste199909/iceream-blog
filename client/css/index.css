@@ -1,3 +1,13 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
 html {
   font-family: Helvetica;
   font-size: 16px;
@@ -6,8 +16,6 @@ html {
 body {
   margin: 0;
   background-color: #eff3f6;
-  font-family: helvetica;
-  font-size: 1rem;
 }
 /* 导航栏 */
 #nav {
@@ -16,11 +24,12 @@ body {
   position: fixed;
   left: 0;
   top: 0;
+  display: none;
   background-color: #fff;
-  z-index: 2;
 }
-#nav .logo {
+#nav .menu-btn {
   width: 2.2rem;
+  height: 2.2rem;
   margin: 0.7rem 1rem;
   cursor: pointer;
 }
@@ -61,40 +70,107 @@ body {
   margin: 0.7rem 0.7rem;
   cursor: pointer;
 }
-.banner {
-  z-index: -1;
-  position: absolute;
-  margin-top: 3rem;
-  width: 100vw;
-  height: 20rem;
-  background-image: url("../images/banner-day-min.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  display: flex;
-  justify-content: center;
+#big-box {
+  margin: 0 100px;
 }
-.banner .motto {
-  margin-top: 3.4rem;
-  font-family: helvetica;
-  font-size: 2.5rem;
-  font-weight: bolder;
-  color: #fff;
+#sidebar {
+  width: 240px;
+  margin-right: 8px;
+  float: left;
+}
+#sidebar .head {
+  width: 100%;
+  height: 4rem;
+  background-color: #353d46;
+  text-align: center;
+}
+#sidebar .head * {
+  vertical-align: middle;
+}
+#sidebar .head .logo {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  margin: 1rem 0;
+  cursor: pointer;
+}
+#sidebar .head .logo img {
+  width: inherit;
+}
+#sidebar .head .site-name {
+  color: #f0eaea;
+  font-size: 1.1rem;
+}
+#sidebar .profile {
+  display: flex;
+  background: #fff;
+  flex-direction: column;
+  align-items: center;
+}
+#sidebar .profile .avatar {
+  width: 100%;
+  padding: 20px 70px 10px;
+}
+#sidebar .profile .avatar img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+#sidebar .profile .nickname {
+  color: nightBg;
+  font-size: 1.3rem;
+}
+#sidebar .profile .outcome {
+  display: flex;
+  font-size: 1rem;
+  color: slategray;
+}
+#sidebar .profile .outcome > * {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem;
+}
+#sidebar .profile .social {
+  margin: 0.5rem 0 2rem 0;
+}
+#sidebar .profile .social .github {
+  width: 2rem;
+  border-radius: 50%;
+}
+#sidebar .profile .social .github:hover {
+  box-shadow: 0 0 2px 1px #ccc;
+}
+#sidebar .sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  margin-top: 0.5rem;
+}
+#sidebar .sidebar-nav .sidebar-nav-item {
+  padding: 0 2rem;
+  width: inherit;
+  height: 2.4rem;
+  line-height: 2.4rem;
+  cursor: pointer;
+}
+#sidebar .sidebar-nav .sidebar-nav-item:hover {
+  background-color: #eff3f6;
 }
 /* 内容 */
 #main {
+  float: right;
+  width: calc(100% - 248px);
+  background: #fff;
   min-height: 100vh;
-  position: absolute;
-  top: 13rem;
-  background-color: #fff;
-  padding: 0 3rem;
 }
 #main .content-item {
-  margin: 1rem 0;
-  padding: 2rem 10rem;
+  margin: 1rem;
+  padding: 2rem 3rem;
 }
 #main .title {
-  font-size: 2.8rem;
+  font-size: 2rem;
   color: skyblue;
 }
 #main .title:hover {
@@ -103,17 +179,16 @@ body {
 #main .profile {
   font-size: 1.2rem;
   font-weight: lighter;
-}
-#main .preview {
-  margin: 1rem 0;
-  overflow: hidden;
+  margin: 0.5rem 0;
 }
 #main .preview .preview-img {
   width: 100%;
-  border-radius: 0.5rem;
+  border-radius: 0.2rem;
 }
 #main .foot {
   display: flex;
+  margin-bottom: 0.5rem;
+  color: #ccc;
 }
 #main .foot .foot-item {
   font-weight: lighter;
@@ -128,87 +203,80 @@ body {
 #main .foot .foot-item .tag {
   margin: 0 0.4rem;
 }
-@media screen and (max-width: 350px) {
-  html {
-    font-size: 8px;
-  }
-  #main {
-    margin: 1rem 1rem;
-  }
-  #main .content-item {
-    padding: 2rem 0.5rem;
-  }
-}
-@media screen and (min-width: 350px) {
-  html {
-    font-size: 10px;
-  }
-  #main {
-    margin: 1rem 1rem;
-  }
-  #main .content-item {
-    padding: 2rem 1rem;
-  }
-}
-@media screen and (min-width: 500px) {
-  html {
-    font-size: 12px;
-  }
-  #main {
-    margin: 1rem 1rem;
-  }
-  #main .content-item {
-    padding: 2rem 2rem;
-  }
-}
-@media screen and (min-width: 650px) {
-  html {
-    font-size: 14px;
-  }
-  #main {
-    margin: 1rem 1rem;
-  }
-  #main .content-item {
-    padding: 2rem 3rem;
-  }
-}
-@media screen and (min-width: 800px) {
-  html {
-    font-size: 14px;
-  }
-  #main {
-    margin: 1rem 4rem;
-  }
-  #main .content-item {
-    padding: 2rem 4rem;
-  }
-}
-@media screen and (min-width: 950px) {
-  html {
-    font-size: 16px;
-  }
-  #main {
-    margin: 1rem 4rem;
-  }
-  #main .content-item {
-    padding: 2rem 4rem;
-  }
-}
-@media screen and (min-width: 1100px) {
-  #main {
-    margin: 1rem 8rem;
-  }
-  #main .content-item {
-    padding: 2rem 7rem;
-  }
-}
 /* 底部 */
 #footer {
+  height: 10rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 15rem;
 }
 #footer a {
   font-weight: lighter;
+}
+#tools {
+  position: fixed;
+  width: 2.5rem;
+  height: 5rem;
+  background-color: red;
+  bottom: 3rem;
+  right: 2rem;
+}
+#tools > * {
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: white;
+  border: 1px solid skyblue;
+  cursor: pointer;
+}
+#tools .up {
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0.2rem;
+}
+#tools .day-night {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+@media screen and (max-width: 960px) {
+  #big-box {
+    margin-top: 4.3rem;
+  }
+  #sidebar {
+    display: none;
+  }
+  #main {
+    width: 100%;
+  }
+  #nav {
+    display: block;
+  }
+  #tools {
+    display: none;
+  }
+}
+@media screen and (max-width: 760px) {
+  #big-box {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+}
+@media screen and (max-width: 560px) {
+  #big-box {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    font-size: 1rem;
+  }
+  #main .title {
+    font-size: 1.2rem;
+  }
+  #main .profile {
+    font-size: 1rem;
+  }
+  #main .content-item {
+    margin: 1rem;
+    padding: 1rem 1.5em;
+  }
+  #main .foot {
+    font-size: 0.8rem;
+  }
 }

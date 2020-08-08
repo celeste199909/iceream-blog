@@ -7,58 +7,91 @@
     <meta name="description" content="'iceream的练习册'是一个个人网站，记录了一些前端的小项目。">
     <meta name="keywords" content="iceream的练习册,JavaScript,前端,个人网站,CSS,iceream">
     <meta name="theme-color" content="#fff" />
-    <title>iceream的练习册</title>
+    <title>iceream’ blog</title>
     <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/index.css">
 </head>
 
 <body>
-    <!-- 导航栏 -->
+    <!-- 顶部导航栏，默认隐藏 -->
     <nav id="nav">
-        <img class="logo" src="./images/lianxice.png" alt="">
-        <menu id="menu">
-            <ul class="cate">
-                <li class="cate-item">JavaScript</li>
-                <li class="cate-item">CSS</li>
-                <li class="cate-item">article</li>
-            </ul>
-        </menu>
+        <img class="menu-btn" src="./images/menu.png" alt="">
         <span class="site-name">分类</span>
         <img class="day-night" src="./images/day-night.png" alt="">
+        <!-- 菜单，默认隐藏 -->
+        <div id="menu" style="display:block">
+            <ul>
+                <li class="menu-item">主页</li>
+                <li class="menu-item">关于</li>
+                <li class="menu-item">标签</li>
+                <li class="menu-item">搜索</li>
+            </ul>
+        </div>
+
     </nav>
 
-    <!-- banner -->
-    <div class="banner">
-        <div class="motto">以往不可谏，来者犹可追。</div>
-    </div>
-    <!-- 内容 -->
-    <div id="main">
-        <ul class="content">
-            <!-- <li class="content-item">
-                <a class="title" href="/practices/water">标题需要足够的长度才行</a>
-                <p class="profile">
-                    简介也是需要不少的数字来充数的，这样看起来也许会好一点。简介也是需要不少的数字来充数的，这样看起来也许会好一点。简介也是需要不少的数字来充数的，这样看起来也许会好一点。简介也是需要不少的数字来充数的，这样看起来也许会好一点。
-                </p>
-                <p class="preview">
-                    <img class="preview-img" src="./images/example-min.jpg" alt="">
-                </p>
-                <div class="foot">
-                    <div class="foot-item">2020-08-02</div>
-                    <div class="foot-item tags">
-                        <span class="tag">#JavaScript</span>
+
+    <!-- 中心内容 -->
+    <div id="big-box" class="clearfix">
+        <!-- 一、侧面导航 -->
+        <nav id="sidebar">
+            <!-- 1.头 -->
+            <div class="head">
+                <a href="/" class="logo"><img src="./images/logo.png" alt=""></a>
+                <span class="site-name">iceream' blog</span>
+            </div>
+            <!-- 2.个人信息 -->
+            <div class="profile">
+                <div class="avatar">
+                    <img src="./images/avatar.jpeg" alt="">
+                </div>
+                <div class="nickname">iceream</div>
+                <div class="outcome">
+                    <div class="demo">
+                        <strong>29</strong>
+                        <span>项目</span>
+                    </div>
+                    <div class="post">
+                        <strong>99</strong>
+                        <span>博文</span>
                     </div>
                 </div>
-            </li> -->
-        </ul>
-        <!-- 底部 -->
-        <div id="footer">
-            <span>备案号：</span>
-            <a href="http://beian.miit.gov.cn/" id="beian">桂ICP备19009961号</a>
+                <div class="social">
+                    <a href="https://github.com/iceream" target="_blank"><img class="github" src="./images/github.png"
+                            alt=""></a>
+                </div>
+            </div>
+            <!-- 3.导航 -->
+            <ul class="sidebar-nav">
+                <li class="sidebar-nav-item">主页</li>
+                <li class="sidebar-nav-item">关于</li>
+                <li class="sidebar-nav-item">标签</li>
+                <li class="sidebar-nav-item">搜索</li>
+            </ul>
+        </nav>
+
+        <!-- 二、内容 -->
+        <div id="main">
+            <ul class="content ">
+            </ul>
         </div>
     </div>
 
-
+    <!-- 底部信息 -->
+    <div id="footer">
+        <span>备案号：</span>
+        <a href="http://beian.miit.gov.cn/" id="beian">桂ICP备19009961号</a>
+    </div>
+    <!-- 右下角工具栏，夜间模式切换，返回顶部 -->
+    <div id="tools">
+        <div>
+            <a href="#"><img class="up" src="./images/up.png" alt=""></a>
+        </div>
+        <div>
+            <img class="day-night" src="./images/day-night.png" alt="">
+        </div>
+    </div>
 </body>
 <script src='/data/practices.js'></script>
 <script src="/js/index.js"></script>

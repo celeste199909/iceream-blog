@@ -5,6 +5,19 @@
 @titleColor: skyblue;
 @blackFont: #000;
 
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+// 清楚浮动
+.clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
 html {
     font-family: Helvetica;
     font-size: @font16;
@@ -14,8 +27,7 @@ html {
 body {
     margin: 0;
     background-color: @dayBg;
-    font-family: helvetica;
-    font-size: 1rem;
+    // transition: background ease-in 1.5s;
 }
 
 /* 导航栏 */
@@ -25,13 +37,12 @@ body {
     position: fixed;
     left: 0;
     top: 0;
-    // padding-left: 20px;
+    display: none;
     background-color: @whiteTheme;
-    z-index: 2;
 
-    .logo {
+    .menu-btn {
         width: 2.2rem;
-        // height: 2.2rem;
+        height: 2.2rem;
         margin: .7rem 1rem;
         cursor: pointer;
     }
@@ -65,7 +76,6 @@ body {
         }
     }
 
-
     .site-name {
         // height: 3.2rem;
         line-height: 3.8rem;
@@ -83,53 +93,146 @@ body {
     }
 }
 
-// banner
-.banner {
-    z-index: -1;
-    position: absolute;
-    margin-top: 3rem;
-    width: 100vw;
-    height: 20rem;
-    background-image: url("../images/banner-day-min.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: flex;
-    justify-content: center;
-    // align-items: unset;
+#big-box {
+    margin: 0 100px;
+}
 
-    .motto {
-        margin-top: 3.4rem;
-        font-family: helvetica;
-        font-size: 2.5rem;
-        font-weight: bolder;
-        color: @whiteTheme;
+
+// 左侧导航
+#sidebar {
+    width: 240px;
+    margin-right: 8px;
+    float: left;
+
+    // &>* {
+    //     margin-bottom: 1rem;
+    // }
+
+    // 1.头
+    .head {
+        width: 100%;
+        height: 4rem;
+        background-color: @nightBg;
+        text-align: center;
+
+        * {
+            vertical-align: middle;
+
+        }
+
+        .logo {
+            display: inline-block;
+            width: 2rem;
+            height: 2rem;
+            margin: 1rem 0;
+            cursor: pointer;
+
+            img {
+                width: inherit;
+            }
+        }
+
+        .site-name {
+            color: rgb(240, 234, 234);
+            font-size: 1.1rem;
+        }
     }
+
+    // 2.个人信息
+    .profile {
+        display: flex;
+        background: @whiteTheme;
+        flex-direction: column;
+        align-items: center;
+
+        // 头像
+        .avatar {
+            width: 100%;
+            padding: 20px 70px 10px;
+
+            img {
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                overflow: hidden;
+            }
+        }
+
+        // 昵称
+        .nickname {
+            color: nightBg;
+            font-size: 1.3rem;
+        }
+
+        // 作品数量
+        .outcome {
+            display: flex;
+            font-size: 1rem;
+            color: slategray;
+
+            &>* {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin: 1rem;
+            }
+        }
+
+        // 社交账号
+        .social {
+            margin: .5rem 0 2rem 0;
+
+            .github {
+                width: 2rem;
+                border-radius: 50%;
+                // border: 2px solid white;
+
+                &:hover {
+                    // border: 2px solid skyblue;
+                    box-shadow: 0 0 2px 1px #ccc;
+                }
+            }
+        }
+    }
+
+    // 3.左侧，导航，目录
+    .sidebar-nav {
+        display: flex;
+        flex-direction: column;
+        background: @whiteTheme;
+        // color: #eff3f6;
+        margin-top: .5rem;
+
+        .sidebar-nav-item {
+            padding: 0 2rem;
+            width: inherit;
+            height: 2.4rem;
+            line-height: 2.4rem;
+            cursor: pointer;
+
+            &:hover {
+                background-color: #eff3f6;
+
+            }
+        }
+    }
+
 }
 
 /* 内容 */
 #main {
+    float: right;
+    width: calc(100% - 248px);
+    background: @whiteTheme;
     min-height: 100vh;
-    position: absolute;
-    top: 13rem;
-    // z-index: 9;
-    // margin-top: 26rem;
-    // ul
-    background-color: @whiteTheme;
-    // margin: 1rem 10rem;
-    padding: 0 3rem;
-    // margin-bottom: 30rem;
 
     .content-item {
-        // li
-        margin: 1rem 0;
-        padding: 2rem 10rem;
-        // background-color: #fff;
-
+        margin: 1rem;
+        padding: 2rem 3rem;
     }
 
     .title {
-        font-size: 2.8rem;
+        font-size: 2rem;
         color: @titleColor;
 
         &:hover {
@@ -141,23 +244,24 @@ body {
     .profile {
         font-size: 1.2rem;
         font-weight: lighter;
+        margin: .5rem 0;
     }
 
     .preview {
-        margin: 1rem 0;
-        overflow: hidden;
+        // margin: 1rem 0;
+        // overflow: hidden;
 
         .preview-img {
             width: 100%;
-            // height: inherit;
-            // width: inherit;
-            // height: 20rem;
-            border-radius: .5rem;
+            border-radius: .2rem;
         }
     }
 
+    // 底部
     .foot {
         display: flex;
+        margin-bottom: .5rem;
+        color: #ccc;
 
         .foot-item {
             font-weight: lighter;
@@ -175,127 +279,106 @@ body {
                 margin: 0 .4rem;
             }
         }
-
-
-    }
-
-
-}
-
-@media screen and (max-width:350px) {
-    html {
-        font-size: 8px;
-    }
-
-    #main {
-        margin: 1rem 1rem;
-
-        .content-item {
-            // li
-            padding: 2rem 0.5rem;
-        }
     }
 }
-
-@media screen and (min-width:350px) {
-    html {
-        font-size: 10px;
-    }
-
-    #main {
-        margin: 1rem 1rem;
-
-        .content-item {
-            // li
-            padding: 2rem 1rem;
-        }
-    }
-}
-
-@media screen and (min-width:500px) {
-    html {
-        font-size: 12px;
-    }
-
-    #main {
-        margin: 1rem 1rem;
-
-        .content-item {
-            // li
-            padding: 2rem 2rem;
-        }
-    }
-}
-
-@media screen and (min-width:650px) {
-    html {
-        font-size: 14px;
-    }
-
-    #main {
-        margin: 1rem 1rem;
-
-        .content-item {
-            // li
-            padding: 2rem 3rem;
-        }
-    }
-}
-
-@media screen and (min-width:800px) {
-    html {
-        font-size: 14px;
-    }
-
-    #main {
-        margin: 1rem 4rem;
-
-        .content-item {
-            // li
-            padding: 2rem 4rem;
-        }
-    }
-}
-
-@media screen and (min-width:950px) {
-    html {
-        font-size: 16px;
-    }
-
-    #main {
-        margin: 1rem 4rem;
-
-        .content-item {
-            // li
-            padding: 2rem 4rem;
-        }
-    }
-}
-
-@media screen and (min-width:1100px) {
-    #main {
-        margin: 1rem 8rem;
-
-        .content-item {
-            // li
-            padding: 2rem 7rem;
-        }
-    }
-}
-
 
 /* 底部 */
 #footer {
+    height: 10rem;
     display: flex;
-    // position: absolute;
     justify-content: center;
     align-items: center;
-    height: 15rem;
-    // bottom: 0;
-    // z-index: 9;
 
     a {
-        // color: #333;
         font-weight: lighter;
+    }
+}
+
+// 工具
+#tools {
+    position: fixed;
+    width: 2.5rem;
+    height: 5rem;
+    background-color: red;
+    bottom: 3rem;
+    right: 2rem;
+
+    &>* {
+        width: 2.5rem;
+        height: 2.5rem;
+        background-color: white;
+        border: 1px solid skyblue;
+        cursor: pointer;
+    }
+
+    .up {
+        width: 2.5rem;
+        height: 2.5rem;
+        padding: .2rem;
+    }
+
+    .day-night {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+}
+
+
+
+// 媒体查询部分
+@media screen and (max-width: 960px) {
+    #big-box {
+        margin-top: 4.3rem;
+    }
+
+    #sidebar {
+        display: none;
+        // visibility: hidden;
+    }
+
+    #main {
+        width: 100%;
+    }
+
+    #nav {
+        display: block;
+    }
+
+    #tools {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 760px) {
+    #big-box {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+}
+
+@media screen and (max-width: 560px) {
+    #big-box {
+        margin-left: .5rem;
+        margin-right: .5rem;
+        font-size: 1rem;
+    }
+
+    #main {
+        .title {
+            font-size: 1.2rem;
+        }
+
+        .profile {
+            font-size: 1rem;
+        }
+
+        .content-item {
+            margin: 1rem;
+            padding: 1rem 1.5em;
+        }
+
+        .foot {
+            font-size: .8rem;
+        }
     }
 }

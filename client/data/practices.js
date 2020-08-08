@@ -1,13 +1,12 @@
-let practices = [
-    {
+let practices = [{
         id: "20200801",
         author: "iceream",
         title: "CSS水滴落下融合动画",
         link: "practices/water/index.html",
         profile: "来自于B站up主：codingstartup。用 CSS 制作一个水滴的动画，并会实现水滴融合的效果。部份安卓系统的充电动画都是类似的效果。",
-        preview: "./images/water.gif",
+        preview: "",
         date: "2020-08-01",
-        category: "CSS",
+        category: "css",
     },
     {
         id: "20200802",
@@ -15,7 +14,7 @@ let practices = [
         title: "CSS水滴落下融合动画",
         link: "detail/others",
         profile: "来自于B站up主：codingstartup。用 CSS 制作一个水滴的动画，并会实现水滴融合的效果。部份安卓系统的充电动画都是类似的效果。没有图片的测试。",
-        preview: "",
+        preview: "#",
         date: "2020-08-01",
         category: "article",
     },
