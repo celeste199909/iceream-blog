@@ -57,8 +57,7 @@ let menuBtn = document.querySelector(".logo");
 let menu = document.querySelector("menu");
 menuBtn.addEventListener("click", () => {
     let isShow = menu.style.getPropertyValue("display");
-    // transition: ;
-    // console.log(isShow);
+
     if (isShow === "block")
         menu.style.display = "none";
     else

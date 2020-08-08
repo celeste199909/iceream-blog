@@ -1,24 +1,20 @@
-const express = require('express')
-// const exStatic = require("express-static");
+const koa = require("koa")
+const Router = require("koa-router")
+const static = require("koa-static")
+
+const app = new koa()
+const router = new Router()
 
 
-const app = express();
-
-app.get('/', (req, res) => {
-    res.redirect('index.html')
-})
-app.get('/practices/water', (req, res) => {
-    // res.redirect('index.html')
-    res.redirect('water/index.html')
-})
-
-app.use(express.static('./client'));
-// app.use(express.static('./practices'));
-
-// app.use(exStatic('./practices'));
-
-app.listen(80, () => {
-    console.log("server is running! http://localhost:80");
+router.get("/", (ctx) => {
+    // console.log("hello")
+    ctx.render("index.html")
 })
 
 
+app.use(static("client"))
+app.use(router.routes())
+
+app.listen(8000, () => {
+    console.log("http://localhost:8000")
+})
