@@ -22,6 +22,7 @@ body {
 #nav .logo {
   width: 2.2rem;
   margin: 0.7rem 1rem;
+  cursor: pointer;
 }
 #nav #menu {
   position: absolute;
@@ -58,6 +59,7 @@ body {
   right: 0;
   line-height: 3.8rem;
   margin: 0.7rem 0.7rem;
+  cursor: pointer;
 }
 .banner {
   z-index: -1;

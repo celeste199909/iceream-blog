@@ -1,6 +1,6 @@
 // localStorage.setItem("practices", JSON.stringify(practices));
 
-
+console.log(practices)
 // 渲染li
 function renderPracticesList(practices) {
     let ul = document.querySelector(".content");
