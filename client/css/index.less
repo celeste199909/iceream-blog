@@ -225,6 +225,7 @@ body {
     width: calc(100% - 248px);
     background: @whiteTheme;
     min-height: 100vh;
+    padding: 1rem 0;
 
     .content-item {
         margin: 1rem;
@@ -307,7 +308,6 @@ body {
         width: 2.5rem;
         height: 2.5rem;
         background-color: white;
-        border: 1px solid skyblue;
         cursor: pointer;
     }
 
@@ -315,11 +315,17 @@ body {
         width: 2.5rem;
         height: 2.5rem;
         padding: .2rem;
+        border-width: 1px 1px 1px 1px;
+        border-style: solid;
+        border-color: skyblue;
     }
 
     .day-night {
         width: 2.5rem;
         height: 2.5rem;
+        border-width: 0px 1px 1px 1px;
+        border-style: solid;
+        border-color: skyblue;
     }
 }
 
