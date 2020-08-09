@@ -50,11 +50,6 @@ function filterCate(practices, cate) {
 // practices = JSON.parse(localStorage.getItem("practices"))
 renderPracticesList(practices);
 
-
-
-
-
-
 // console.log(JSON.parse(localStorage.getItem("newArr")));
 
 // 菜单显示/隐藏
@@ -68,19 +63,3 @@ menuBtn.addEventListener("click", () => {
     else
         menu2.style.display = "block";
 })
-
-// 判断是否有图片
-// let previews = document.querySelectorAll(".preview")
-// let previewImgs = document.querySelectorAll(".preview-img")
-// previewImgs.forEach( item => {
-//     let imgIsExist = item.getAttribute("src")
-//     if (!imgIsExist) {
-//         previews.forEach
-//         preview.style.display = "none"
-//     }
-// })
-// let imgIsExist = previewImg.getAttribute("src")
-// console.log(previewImg.getAttribute("src"));
-// if (!imgIsExist) {
-//     preview.style.display = "none"
-// }
