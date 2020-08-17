@@ -10,9 +10,12 @@
   "license": "ISC",
   "dependencies": {
     "koa": "^2.13.0",
-    "koa-bodyparser": "^4.3.0",
+    "koa-body": "^4.2.0",
+    "koa-nunjucks-2": "^3.0.2",
     "koa-router": "^9.1.0",
-    "koa-static": "^5.0.0",
-    "mysql": "^2.18.1"
+    "koa-static-cache": "^5.1.4",
+    "mysql2": "^2.1.0",
+    "vue": "^2.6.11",
+    "vue-server-renderer": "^2.6.11"
   }
 }
