@@ -15,7 +15,8 @@ html {
 }
 body {
   margin: 0;
-  background-color: #eff3f6;
+  background-color: #708090;
+  color: #fff;
 }
 /* 导航栏 */
 #nav {
@@ -25,7 +26,7 @@ body {
   left: 0;
   top: 0;
   display: none;
-  background-color: #fff;
+  background-color: #353d46;
 }
 #nav .menu-btn {
   width: 2.2rem;
@@ -41,7 +42,7 @@ body {
   padding: 0;
   width: 50%;
   height: 100vh;
-  background-color: #fff;
+  background-color: #353d46;
   opacity: 0.8;
   display: none;
 }
@@ -81,7 +82,7 @@ body {
 #sidebar .head {
   width: 100%;
   height: 4rem;
-  background-color: #353d46;
+  background-color: #1a1a1a;
   text-align: center;
 }
 #sidebar .head * {
@@ -103,7 +104,7 @@ body {
 }
 #sidebar .profile {
   display: flex;
-  background: #fff;
+  background: #353d46;
   flex-direction: column;
   align-items: center;
 }
@@ -124,7 +125,6 @@ body {
 #sidebar .profile .outcome {
   display: flex;
   font-size: 1rem;
-  color: slategray;
 }
 #sidebar .profile .outcome > * {
   display: flex;
@@ -145,7 +145,7 @@ body {
 #sidebar .sidebar-nav {
   display: flex;
   flex-direction: column;
-  background: #fff;
+  background: #353d46;
   margin-top: 0.5rem;
 }
 #sidebar .sidebar-nav .sidebar-nav-item {
@@ -155,7 +155,7 @@ body {
   padding: 0 2rem;
 }
 #sidebar .sidebar-nav .sidebar-nav-item:hover {
-  background-color: #eff3f6;
+  background-color: #5f676d;
 }
 #sidebar .sidebar-nav .sidebar-nav-item a {
   display: inline-block;
@@ -165,9 +165,10 @@ body {
 #main {
   float: right;
   width: calc(100% - 248px);
-  background: #fff;
+  background: #353d46;
   min-height: 100vh;
   padding: 1rem 0;
+  color: #fff;
 }
 #main .content-item {
   margin: 0.5rem 1rem;

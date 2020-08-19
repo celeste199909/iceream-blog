@@ -15,7 +15,7 @@ module.exports = {
     },
     addPost(postData) {
         return new Promise((resolve, reject) => {
-            let sql = 'insert into posts (title,profile,content,time,tags) values ( ?,?,?,?,?)'
+            let sql = 'insert into posts (title,content,time,tags) values ( ?,?,?,?)'
             db.query(sql, postData, (err, rs) => {
                 if (err) {
                     reject(err)

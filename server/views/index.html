@@ -10,7 +10,7 @@
     <title>iceream’s blog</title>
     <link rel="shortcut icon" href="/public/images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="/public/css/reset.css">
-    <link rel="stylesheet" href="/public/css/index.css">
+    <link rel="stylesheet" href="/public/css/index.css" id="style">
 </head>
 
 <body>
@@ -51,11 +51,11 @@
                     <div class="nickname">iceream</div>
                     <div class="outcome">
                         <div class="demo">
-                            <strong>29</strong>
+                            <a href="#">29</a>
                             <span>项目</span>
                         </div>
                         <div class="post">
-                            <strong>99</strong>
+                            <a href="#">99</a>
                             <span>博文</span>
                         </div>
                     </div>
@@ -66,7 +66,10 @@
                 </div>
                 <!-- 3.导航 -->
                 <ul class="sidebar-nav">
-                    <li class="sidebar-nav-item"><a href="">主页</a></li>
+                    <li class="sidebar-nav-item">
+                        <span>图标</span>
+                        <a href="">主页</a>
+                    </li>
                     <li class="sidebar-nav-item"><a href="">关于</a></li>
                     <li class="sidebar-nav-item"><a href="">标签</a></li>
                     <li class="sidebar-nav-item"><a href="">搜索</a></li>
@@ -81,20 +84,20 @@
                 <ul class="content ">
                     {% for post in posts %}
                     <li class="content-item">
-                        <a class="title" href="/posts/{{post.id}}">{{post.title}}</a>
-                        <p class="profile">{{post.profile}}</p>
+                        <a class="title" href="/posts/{{post.id}}">{{post.title.slice(0,50)}}</a>
+                        <p class="profile">{{post.content.slice(0,200)}} ...</p>
                         <div class="foot">
                             <div class="foot-item">{{post.time}}</div>
                             <div class="foot-item tags">
                                 {% for tag in post.tags %}
-                                <span class="tag">{{tag}}</span>
+                                <span class="tag">
+                                    <a href="#">{{tag}}</a>
+                                </span>
                                 {% endfor %}
-
                             </div>
                         </div>
                     </li>
                     {% endfor %}
-
                 </ul>
             </div>
         </div>
@@ -117,5 +120,51 @@
 </body>
 <script src="/public/js/daynight.js"></script>
 <script src="/public/js/index.js"></script>
+<script>
+    let btns = document.querySelectorAll(".day-night")
+    let style = document.querySelector("#style")
+    window.onload = function () {
+        reload()
+    }
+
+    function reload() {
+        let isNight = localStorage.getItem("isNight");
+        if (isNight === "No") {
+            style.setAttribute("href", "/public/css/index.css")
+        } else if (isNight === "Yes") {
+            style.setAttribute("href", "/public/css/index-night.css")
+        }
+    }
+
+    function changeStyle() {
+        let isNight = localStorage.getItem("isNight");
+        if (isNight === "Yes") {
+            style.setAttribute("href", "/public/css/index.css")
+            // 并且把状态改成白天
+            localStorage.setItem("isNight", "No")
+        } else if (isNight === "No" || isNight === null) {
+            style.setAttribute("href", "/public/css/index-night.css")
+            localStorage.setItem("isNight", "Yes")
+        }
+        // }
+
+        // let status = style.getAttribute("href")
+        // switch (status) {
+        //     case "/public/css/index.css":
+        //         style.setAttribute("href", "/public/css/index-night.css")
+        //         localStorage.setItem("isNight", "Yes")
+        //         break;
+        //     case "/public/css/index-night.css":
+        //         style.setAttribute("href", "/public/css/index.css")
+        //         localStorage.setItem("isNight", "No")
+        //         break;
+        // }
+    }
+    btns.forEach(btn => {
+        btn.onclick = () => {
+            changeStyle()
+        }
+    })
+</script>
 
 </html>
