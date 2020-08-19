@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="'iceream的练习册'是一个个人网站，记录了一些前端的小项目。">
+    <meta name="keywords" content="iceream的练习册,JavaScript,前端,个人网站,CSS,iceream">
+    <meta name="theme-color" content="#fff" />
+    <title>iceream’s blog</title>
+    <link rel="stylesheet" href="/public/css/reset.css">
+    <link rel="stylesheet" href="/public/css/detail.css">
+</head>
+
+<body>
+    <div class="content-box">
+        <div class="title">{{post.title}}</div>
+        <div class="content">
+            {% for p in contents %}
+            <p class="paragraph">{{p}}。</p>
+            {% endfor %}
+        </div>
+        <div class="foot">
+            <div class="foot-item">{{post.time}}</div>
+            <div class="foot-item tags">
+                {% for tag in post.tags %}
+                <span class="tag">
+                    <a href="#">{{tag}}</a>
+                </span>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

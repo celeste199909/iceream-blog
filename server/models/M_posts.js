@@ -13,6 +13,18 @@ module.exports = {
             })
         })
     },
+    getDetailPosts(id) {
+        return new Promise((reslove, reject) => {
+            let sql = `select * from posts where id=${id}`
+            db.query(sql, (err, rs) => {
+                if (err) {
+                    reject(err)
+                } else {
+                    reslove(rs)
+                }
+            })
+        })
+    },
     addPost(postData) {
         return new Promise((resolve, reject) => {
             let sql = 'insert into posts (title,content,time,tags) values ( ?,?,?,?)'

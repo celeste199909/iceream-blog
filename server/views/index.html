@@ -23,13 +23,28 @@
             <!-- 菜单，默认隐藏 -->
             <div id="menu">
                 <ul>
-                    <li class="sidebar-nav-item"><a href="">主页</a></li>
-                    <li class="sidebar-nav-item"><a href="">关于</a></li>
-                    <li class="sidebar-nav-item"><a href="">标签</a></li>
-                    <li class="sidebar-nav-item"><a href="">搜索</a></li>
-                    <li class="sidebar-nav-item"><a href="/login">登录</a></li>
-                    <li class="sidebar-nav-item"><a href="/register">注册</a></li>
-                    <li class="sidebar-nav-item"><a href="/addpost">发布</a></li>
+
+
+                    <li class="sidebar-nav-item">
+                        <img src="/public/images/menu/home-black.png" alt="home" class="sidebar-icon">
+                        <a href="">主页</a>
+                    </li>
+                    <li class="sidebar-nav-item">
+                        <img src="/public/images/menu/about-black.png" alt="about" class="sidebar-icon">
+                        <a href="">关于</a>
+                    </li>
+                    <li class="sidebar-nav-item">
+                        <img src="/public/images/menu/tag-black.png" alt="tag" class="sidebar-icon">
+                        <a href="">标签</a>
+                    </li>
+                    <li class="sidebar-nav-item">
+                        <img src="/public/images/menu/search-black.png" alt="search" class="sidebar-icon">
+                        <a href="">搜索</a>
+                    </li>
+                    <li class="sidebar-nav-item">
+                        <img src="/public/images/menu/publish-black.png" alt="publish" class="sidebar-icon">
+                        <a href="/addpost">发布</a>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -61,30 +76,42 @@
                     </div>
                     <div class="social">
                         <a href="https://github.com/iceream" target="_blank"><img class="github"
-                                src="/public/images/github.png" alt=""></a>
+                                src="/public/images/github-black.png" alt=""></a>
                     </div>
                 </div>
                 <!-- 3.导航 -->
                 <ul class="sidebar-nav">
                     <li class="sidebar-nav-item">
-                        <span>图标</span>
+                        <img src="/public/images/menu/home-black.png" alt="home" class="sidebar-icon">
                         <a href="">主页</a>
                     </li>
-                    <li class="sidebar-nav-item"><a href="">关于</a></li>
-                    <li class="sidebar-nav-item"><a href="">标签</a></li>
-                    <li class="sidebar-nav-item"><a href="">搜索</a></li>
-                    <li class="sidebar-nav-item"><a href="/login">登录</a></li>
-                    <li class="sidebar-nav-item"><a href="/register">注册</a></li>
-                    <li class="sidebar-nav-item"><a href="/addpost">发布</a></li>
+                    <li class="sidebar-nav-item">
+                        <img src="/public/images/menu/about-black.png" alt="about" class="sidebar-icon">
+                        <a href="">关于</a>
+                    </li>
+                    <li class="sidebar-nav-item">
+                        <img src="/public/images/menu/tag-black.png" alt="tag" class="sidebar-icon">
+                        <a href="">标签</a>
+                    </li>
+                    <li class="sidebar-nav-item">
+                        <img src="/public/images/menu/search-black.png" alt="search" class="sidebar-icon">
+                        <a href="">搜索</a>
+                    </li>
+                    <!-- <li class="sidebar-nav-item"><a href="/login">登录</a></li>
+                    <li class="sidebar-nav-item"><a href="/register">注册</a></li> -->
+                    <li class="sidebar-nav-item">
+                        <img src="/public/images/menu/publish-black.png" alt="publish" class="sidebar-icon">
+                        <a href="/addpost">发布</a>
+                    </li>
                 </ul>
             </nav>
 
             <!-- 二、内容 -->
             <div id="main">
                 <ul class="content ">
-                    {% for post in posts %}
+                    {% for post in onePageData %}
                     <li class="content-item">
-                        <a class="title" href="/posts/{{post.id}}">{{post.title.slice(0,50)}}</a>
+                        <a class="title" href="/post/{{post.id}}">{{post.title.slice(0,50)}}</a>
                         <p class="profile">{{post.content.slice(0,200)}} ...</p>
                         <div class="foot">
                             <div class="foot-item">{{post.time}}</div>
@@ -99,6 +126,22 @@
                     </li>
                     {% endfor %}
                 </ul>
+                <div id="fenye">
+                    <div class="prev"> ＜ </div>
+                    <ul class="fenye">
+                        <!-- {{pagesCount}} -->
+                        {% for i in range(1, pagesCount + 1) %}
+                        <li class="list-item">
+                            {% if(i==currentPage) %}
+                            <a href="/?page={{i}}" class="current">{{i}}</a>
+                            {% else %}
+                            <a href="/?page={{i}}">{{i}}</a>
+                            {% endif %}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <div class="next"> ＞ </div>
+                </div>
             </div>
         </div>
 
@@ -118,53 +161,12 @@
         </div>
     </div>
 </body>
-<script src="/public/js/daynight.js"></script>
+<!-- <script src="/public/js/daynight.js"></script> -->
 <script src="/public/js/index.js"></script>
+<script src="/public/js/skin.js"></script>
+<script src="/public/js/fenye.js"></script>
 <script>
-    let btns = document.querySelectorAll(".day-night")
-    let style = document.querySelector("#style")
-    window.onload = function () {
-        reload()
-    }
 
-    function reload() {
-        let isNight = localStorage.getItem("isNight");
-        if (isNight === "No") {
-            style.setAttribute("href", "/public/css/index.css")
-        } else if (isNight === "Yes") {
-            style.setAttribute("href", "/public/css/index-night.css")
-        }
-    }
-
-    function changeStyle() {
-        let isNight = localStorage.getItem("isNight");
-        if (isNight === "Yes") {
-            style.setAttribute("href", "/public/css/index.css")
-            // 并且把状态改成白天
-            localStorage.setItem("isNight", "No")
-        } else if (isNight === "No" || isNight === null) {
-            style.setAttribute("href", "/public/css/index-night.css")
-            localStorage.setItem("isNight", "Yes")
-        }
-        // }
-
-        // let status = style.getAttribute("href")
-        // switch (status) {
-        //     case "/public/css/index.css":
-        //         style.setAttribute("href", "/public/css/index-night.css")
-        //         localStorage.setItem("isNight", "Yes")
-        //         break;
-        //     case "/public/css/index-night.css":
-        //         style.setAttribute("href", "/public/css/index.css")
-        //         localStorage.setItem("isNight", "No")
-        //         break;
-        // }
-    }
-    btns.forEach(btn => {
-        btn.onclick = () => {
-            changeStyle()
-        }
-    })
 </script>
 
 </html>

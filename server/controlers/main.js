@@ -16,8 +16,26 @@ module.exports = {
             element.time = new Date(element.time).getTime()
             element.time = time(element.time);
         });
+        // 分页 类似二维数组
+        // [
+        //     [1, 2, 3, 4, 5, 6, 7, 8]
+        //     [9, 10, 11]
+        // ]
+        let onePage = 4; // 一页显示的数量4个
+        let currentPage = ctx.query.page || 1; // 当前页 客户端传 | 默认1
+
+        let start = (currentPage - 1) * onePage; // 本页开始的下标 (当前页数 - 1) * 一页显示的数量
+        let end = start + onePage; // 本页结束的下标，就是开始下标 + 结束下标
+
+        let pagesCount = Math.ceil(posts.length / onePage) // 总共有多少页 数组长度 / 一页显示的数量
+        // console.log(pagesCount);
+        let onePageData = posts.slice(start, end) // 本页应该渲染的数据
+        // console.log(onePageData);
         await ctx.render("index", {
-            posts: posts
+            // posts: posts,
+            pagesCount: pagesCount,
+            onePageData: onePageData,
+            currentPage: currentPage
         })
     },
 
@@ -30,7 +48,12 @@ module.exports = {
     },
 
     addpost: async (ctx) => {
-        await ctx.render("addpost")
+        let loginStatus = ctx.cookies.get('loginStatus')
+        if (loginStatus === "login") {
+            await ctx.render("addpost")
+        } else {
+            ctx.redirect("/login")
+        }
     }
 
 }

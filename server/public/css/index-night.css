@@ -56,6 +56,20 @@ body {
   line-height: 3.8rem;
   padding: 0 1.2rem;
 }
+#nav #menu ul li img {
+  vertical-align: middle;
+  width: 1.2rem;
+  height: 1.2rem;
+}
+#nav #menu ul li a {
+  vertical-align: middle;
+  display: inline-block;
+  margin: 0 1rem;
+  width: 7rem;
+}
+#nav #menu ul li:hover {
+  background-color: skyblue;
+}
 #nav #menu ul li:hover {
   background-color: skyblue;
 }
@@ -78,6 +92,7 @@ body {
   width: 240px;
   margin-right: 8px;
   float: left;
+  position: fixed;
 }
 #sidebar .head {
   width: 100%;
@@ -154,12 +169,19 @@ body {
   line-height: 2.4rem;
   padding: 0 2rem;
 }
-#sidebar .sidebar-nav .sidebar-nav-item:hover {
-  background-color: #5f676d;
+#sidebar .sidebar-nav .sidebar-nav-item img {
+  vertical-align: middle;
+  width: 1.2rem;
+  height: 1.2rem;
 }
 #sidebar .sidebar-nav .sidebar-nav-item a {
+  vertical-align: middle;
   display: inline-block;
-  width: auto;
+  margin: 0 1rem;
+  width: 7rem;
+}
+#sidebar .sidebar-nav .sidebar-nav-item:hover {
+  background-color: #4e4e4e;
 }
 /* 内容 */
 #main {
@@ -211,6 +233,39 @@ body {
 }
 #main .foot .foot-item:nth-child(2) .tag {
   margin: 0 0.5rem 0 0;
+}
+#fenye {
+  height: 2rem;
+  margin: 3rem auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#fenye .fenye {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#fenye .fenye li {
+  width: 2rem;
+  height: 2rem;
+  margin: 0 0.1rem;
+  text-align: center;
+  line-height: 2rem;
+  cursor: pointer;
+}
+#fenye .fenye li .current {
+  color: skyblue;
+}
+#fenye .prev,
+#fenye .next {
+  width: 2rem;
+  height: 2rem;
+  margin: 0 0.1rem;
+  text-align: center;
+  line-height: 2rem;
+  color: skyblue;
+  cursor: pointer;
 }
 /* 底部 */
 #footer {

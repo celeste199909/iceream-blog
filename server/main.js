@@ -33,12 +33,16 @@ server.use(koaBody())
 router.get("/", mainContronler.index)
 router.get("/register", mainContronler.register)
 router.get("/login", mainContronler.login)
+// 要发博客是需要验证是否登录，没有登录要先登录
 router.get("/addpost", mainContronler.addpost)
+
 
 // 查询
 router.get("/showposts", postControler.showposts)
 // 添加
 router.post("/addpostHandle", postControler.addpost)
+router.get("/post/:id", postControler.showdetail)
+
 
 // 用户 路由
 router.post("/registerHandle", usersControler.insert)

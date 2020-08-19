@@ -26,9 +26,9 @@ module.exports = {
         })
     },
     // 登录时查询用户名和密码与数据库中的数据是否匹配
-    verifyUser: function (username, password) {
+    verifyUser: function (username) {
         return new Promise((resolve, rejects) => {
-            db.query(`select username,password from users where username=? and password=?`, [username, password], (err, res) => {
+            db.query(`select identity,username,password from users where username=?`, [username], (err, res) => {
                 if (err) {
                     rejects(err)
                 } else {
