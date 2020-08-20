@@ -1,11 +1,11 @@
 const mysql2 = require("mysql2")
 
 let db = mysql2.createConnection({
-    host: "112.124.18.251",
+    host: "",
     port: "3306",
-    database: "mysite",
+    database: "",
     user: "root",
-    password: "mysql1099"
+    password: ""
 })
 
 module.exports = db
