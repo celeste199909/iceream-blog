@@ -1,6 +1,32 @@
+#main {
+  margin: 0 10%;
+}
 form {
-  width: 400px;
-  margin: 200px auto;
+  margin: 1rem auto;
   display: flex;
   flex-direction: column;
+}
+form h2 {
+  margin: 1rem 0;
+  color: skyblue;
+}
+form .title-input {
+  height: 2rem;
+}
+form .content-input {
+  min-height: 15rem;
+}
+form .tags {
+  display: flex;
+  text-align: center;
+  margin: 1rem 0;
+  color: skyblue;
+}
+form .tags .tag {
+  margin-right: 1rem;
+}
+form .publish-btn {
+  height: 2rem;
+  background-color: skyblue;
+  border: none;
 }

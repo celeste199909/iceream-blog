@@ -64,7 +64,6 @@ body {
   vertical-align: middle;
   display: inline-block;
   margin: 0 1rem;
-  width: 7rem;
 }
 #nav #menu ul li:hover {
   background-color: skyblue;
@@ -186,11 +185,11 @@ body {
   width: calc(100% - 248px);
   background: #fff;
   min-height: 100vh;
-  padding: 1rem 0;
+  padding: 2rem 0;
 }
 #main .content-item {
-  margin: 0.5rem 1rem;
-  padding: 2rem 3rem;
+  margin: 0rem 1rem;
+  padding: 1rem 3rem;
 }
 #main .title {
   font-size: 2rem;
@@ -207,10 +206,9 @@ body {
 #main .foot {
   display: flex;
   flex-direction: column;
-  color: #ccc;
+  color: #999;
 }
 #main .foot .foot-item {
-  font-weight: lighter;
   margin: 0.5rem 0;
 }
 #main .foot .foot-item:nth-child(1) {
@@ -344,7 +342,7 @@ body {
     font-size: 1rem;
   }
   #main .content-item {
-    margin: 1rem;
+    margin: 0 1rem;
     padding: 1rem 1.5em;
   }
   #main .foot {

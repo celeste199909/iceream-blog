@@ -4,26 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/public/css/css.css" />
+    <title>登录</title>
+    <link rel="stylesheet" href="/public/css/login.css" />
 </head>
 
 <body>
 
-    <header id="header">
-        <a href="/" id="logo"></a>
-
-        <nav id="nav">
-            <!-- {% for item in categories %}
-            <a href="">{{item.name}}</a>
-            {% endfor %} -->
-        </nav>
-
-        <div id="user">
-            <a href="/login">登录</a>
-            <a href="/register">注册</a>
-        </div>
-    </header>
 
     <div id="main">
 
@@ -32,21 +18,19 @@
             <form action="/loginHandle" method="POST">
                 <div class="form-item">
                     <label>
-                        <span class="txt">姓名：</span>
-                        <input type="text" class="form-input" name="username">
+                        <!-- <span class="txt">账号:</span> -->
+                        <input type="text" class="form-input" name="username" placeholder="账号">
                     </label>
                 </div>
                 <div class="form-item">
                     <label>
-                        <span class="txt">密码：</span>
-                        <input type="password" class="form-input" name="password">
+                        <!-- <span class="txt">密码:</span> -->
+                        <input type="password" class="form-input" name="password" placeholder="密码">
                     </label>
                 </div>
                 <div class="form-item">
                     <label>
-                        <span class="txt"></span>
                         <button class="form-button primary">登录</button>
-                        <!-- <button class="form-button">注册</button> -->
                     </label>
                 </div>
             </form>

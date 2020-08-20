@@ -9,30 +9,48 @@
 </head>
 
 <body>
-    <form action="/addpostHandle" method="POST">
-        <label for="title">
-            <span>标题</span>
-            <input type="text" name="title" maxlength="100" placeholder="最多100字">
-        </label>
-        <!-- <label for="content">
-            <span>内容</span>
-            <input type="text" name="content">
-        </label> -->
-        <textarea name="content" id="" cols="30" rows="10"></textarea>
-        <div class="tags">
-            <input type="checkbox" name="tags" value="JavaScript">JavaScript
-            <input type="checkbox" name="tags" value="CSS">CSS
-            <input type="checkbox" name="tags" value="Node.js">Node.js
-            <input type="checkbox" name="tags" value="Vue.js">Vue.js
-            <input type="checkbox" name="tags" value="React">React
-            <input type="checkbox" name="tags" value="ECMA6">ECMA6
-            <input type="checkbox" name="tags" value="设计模式">设计模式
-            <input type="checkbox" name="tags" value="面向对象">面向对象
-            <input type="checkbox" name="tags" value="函数式编程">函数式编程
-        </div>
+    <div id="main">
+        <form action="/addpostHandle" method="POST">
 
-        <button>提交</button>
-    </form>
+            <h2>标题</h2>
+            <input type="text" name="title" maxlength="100" placeholder="最多100字" class="title-input">
+
+            <h2>内容</h2>
+            <textarea name="content" id="" cols="30" rows="10" class="content-input"></textarea>
+            <div class="tags">
+                <div class="tag">
+                    <input type="checkbox" name="tags" value="JavaScript"> <span>JavaScript</span>
+                </div>
+                <div class="tag">
+                    <input type="checkbox" name="tags" value="CSS"><span>CSS</span>
+                </div>
+                <div class="tag">
+                    <input type="checkbox" name="tags" value="Node.js"><span>Node.js</span>
+                </div>
+                <div class="tag">
+                    <input type="checkbox" name="tags" value="Vue.js"><span>Vue.js</span>
+                </div>
+                <div class="tag">
+                    <input type="checkbox" name="tags" value="React"><span>React</span>
+                </div>
+                <div class="tag">
+                    <input type="checkbox" name="tags" value="ECMA6"><span>ECMA6</span>
+                </div>
+                <div class="tag">
+                    <input type="checkbox" name="tags" value="设计模式"><span>设计模式</span>
+                </div>
+                <div class="tag">
+                    <input type="checkbox" name="tags" value="面向对象"><span>面向对象</span>
+                </div>
+                <div class="tag">
+                    <input type="checkbox" name="tags" value="函数式编程"><span>函数式编程</span>
+                </div>
+            </div>
+
+            <button class="publish-btn">提交</button>
+        </form>
+    </div>
+
 </body>
 
 </html>
