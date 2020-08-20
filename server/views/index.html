@@ -111,8 +111,11 @@
                 <ul class="content ">
                     {% for post in onePageData %}
                     <li class="content-item">
-                        <a class="title" href="/post/{{post.id}}">{{post.title.slice(0,50)}}</a>
-                        <p class="profile">{{post.content.slice(0,200)}} ...</p>
+                        <a class="title" href="/post/{{post.id}}">{{post.title.slice(0,40)}}...</a>
+                        <p class="profile">
+                            {{post.content.slice(0,200)}}
+                            <a href="/post/{{post.id}}" class="dot">...</a>
+                        </p>
                         <div class="foot">
                             <div class="foot-item">{{post.time}}</div>
                             <div class="foot-item tags">
