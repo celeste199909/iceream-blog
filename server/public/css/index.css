@@ -148,12 +148,10 @@ body {
 #sidebar .profile .social {
   margin: 0.5rem 0 2rem 0;
 }
-#sidebar .profile .social .github {
+#sidebar .profile .social img {
   width: 2rem;
   border-radius: 50%;
-}
-#sidebar .profile .social .github:hover {
-  box-shadow: 0 0 2px 1px #ccc;
+  margin: 0 0.5rem;
 }
 #sidebar .sidebar-nav {
   display: flex;
