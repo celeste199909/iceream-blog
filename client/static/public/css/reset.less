@@ -1,0 +1,41 @@
+@font16: 16px;
+
+@fff: #fff;
+@000: #000;
+@skyblue: skyblue;
+
+@bgDay: #eff3f6;
+@bgNight: #353d46;
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+html {
+    font-family: Helvetica;
+    font-size: @font16;
+    color: @000;
+}
+
+body {
+    background-color: @bgDay;
+}
+
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}

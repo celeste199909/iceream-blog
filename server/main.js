@@ -1,57 +1,54 @@
 const Koa = require("koa")
 const Router = require("koa-router")
 const KoaStatic = require("koa-static-cache")
-const nunjucks = require("koa-nunjucks-2")
 const koaBody = require("koa-body")
-const mysql2 = require("mysql2")
 
-// 控制器
-const mainContronler = require("./controlers/main")
-const postControler = require("./controlers/C_posts")
-const usersControler = require("./controlers/C_users")
+const db = require("./models/M_main")
 
 // 实例化app和router
 const server = new Koa()
 const router = new Router()
 
-// 中间件
+// CORS 跨域处理
+server.use(async (ctx, next) => {
+    // let requestOrigin = ctx.header.origin;
+    ctx.set('Access-Control-Allow-Origin', 'http://localhost');
+    await next();
+})
 server.use(KoaStatic("./public", {
     prefix: "/public",
     dynamic: true
 }))
-server.use(nunjucks({
-    ext: "html", // njk
-    path: __dirname + "/views",
-    nunjucksConfig: {
-        trimblock: true // 防止xss漏洞
-    }
-}))
+
 server.use(koaBody())
 
+// 获取所有博客(index)
+router.get("/getAllPosts", async ctx => {
+    let [posts] = await db.getAllPosts()
+    // console.log(posts);
+    ctx.body = posts
+})
+// 添加一条博客（publish）
+router.post("/addAPost", async ctx => {
+    let time = new Date()
+    let data = ctx.request.body
+    await db.addAPost(data.contentmd, data.contenthtml, time)
+    ctx.body = {
+        code: 1,
+        msg: "success"
+    }
+})
+// 获取一条博客的详情(detail)
+router.get("/post/:id", async ctx => {
 
-// 首页 路由
-router.get("/", mainContronler.index)
-router.get("/register", mainContronler.register)
-router.get("/login", mainContronler.login)
-// 要发博客是需要验证是否登录，没有登录要先登录
-router.get("/addpost", mainContronler.addpost)
-
-
-// 查询
-router.get("/showposts", postControler.showposts)
-// 添加
-router.post("/addpostHandle", postControler.addpost)
-router.get("/post/:id", postControler.showdetail)
-
-
-// 用户 路由
-router.post("/registerHandle", usersControler.insert)
-router.post("/loginHandle", usersControler.verify)
-
-
+    let id = ctx.url.split("/")[2]
+    let [aPost] = await db.getAPostById(id)
+    console.log(aPost[0].contenthtml);
+    ctx.body = aPost[0].contenthtml
+})
 // 路由中间件
 server.use(router.routes())
 
-server.listen(80, () => {
-    console.log("http://localhost:80")
+server.listen(8080, () => {
+    console.log("http://localhost:8080")
 })

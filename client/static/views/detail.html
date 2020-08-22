@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="'iceream的练习册'是一个个人网站，记录了一些前端的小项目。">
+    <meta name="keywords" content="iceream的练习册,JavaScript,前端,个人网站,CSS,iceream">
+    <meta name="theme-color" content="#fff" />
+    <title>iceream’s blog</title>
+    <!-- <link rel="stylesheet" href="/static/public/css/reset.css"> -->
+    <!-- <link rel="stylesheet" href="/static/public/css/detail.css"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+    <!-- 引入editormd样式文件 -->
+    <link rel="stylesheet" href="/static/editormd/css/editormd.css">
+    <style>
+        body {
+            width: 80vw;
+            /* height: 100vh; */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="test-editormd-view">
+
+        <textarea style="display:none;" name="test-editormd-markdown-doc"></textarea>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/2.2.3/jquery.min.js"></script>
+    <script src="/static/editormd/lib/marked.min.js"></script>
+    <script src="/static/editormd/lib/prettify.min.js"></script>
+    <script src="/static/editormd/lib/raphael.min.js"></script>
+    <script src="/static/editormd/lib/underscore.min.js"></script>
+    <script src="/static/editormd/lib/sequence-diagram.min.js"></script>
+    <script src="/static/editormd/lib/flowchart.min.js"></script>
+    <script src="/static/editormd/lib/jquery.flowchart.min.js"></script>
+    <script src="/static/editormd/editormd.js"></script>
+    <script type="text/javascript">
+        testEditormdView2 = editormd.markdownToHTML("test-editormd-view", {
+            htmlDecode: "style,script,iframe", // you can filter tags decode
+            emoji: true,
+            taskList: true,
+            path: "/static/editormd/lib/",
+            tex: true, // 默认不解析
+            flowChart: true, // 默认不解析
+            sequenceDiagram: true, // 默认不解析
+        });
+    </script>
+</body>
+
+</html>

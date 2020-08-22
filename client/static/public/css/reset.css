@@ -1,0 +1,25 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+html {
+  font-family: Helvetica;
+  font-size: 16px;
+  color: #000;
+}
+body {
+  background-color: #eff3f6;
+}
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}

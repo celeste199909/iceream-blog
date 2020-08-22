@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="'iceream的练习册'是一个个人网站，记录了一些前端的小项目。">
+    <meta name="keywords" content="iceream的练习册,JavaScript,前端,个人网站,CSS,iceream">
+    <meta name="theme-color" content="#fff" />
+    <title>iceream’s blog</title>
+    <link rel="shortcut icon" href="/static/public/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/static/public/css/reset.css">
+    <link rel="stylesheet" href="/static/public/css/index.css" id="style">
+</head>
+
+<body>
+    <div id="app">
+        <!-- 顶部导航栏（移动端），默认隐藏 -->
+        <nav id="nav">
+            <img class="menu-btn" src="/static/public/images/menu.png" alt="">
+            <img class="style-btn" src="/static/public/images/day-night.png" alt="">
+            <!-- 菜单（移动端），默认隐藏 -->
+            <ul id="menu-mobile">
+                <li class="menu-mobile-item">
+                    <img src="/static/public/images/menu/home-black.png" alt="home" class="sidebar-icon">
+                    <a href="">主页</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- 中心内容 -->
+        <div id="main" class="clearfix">
+            <!-- 一、左侧，侧面导航 -->
+            <nav id="sidebar">
+                <!-- 1.头 -->
+                <div class="head">
+                    <a href="/" class="logo"><img src="/static/public/images/logo.png" alt=""></a>
+                    <span class="site-name">iceream's blog</span>
+                </div>
+                <!-- 2.个人信息 -->
+                <div class="profile">
+                    <div class="avatar">
+                        <img src="/static/public/images/avatar.jpeg" alt="">
+                    </div>
+                    <div class="nickname">iceream</div>
+                    <div class="outcome">
+                        <div class="demo">
+                            <a href="#">29</a>
+                            <span>项目</span>
+                        </div>
+                        <div class="post">
+                            <a href="#">99</a>
+                            <span>博文</span>
+                        </div>
+                    </div>
+                    <div class="social">
+                        <a href="https://github.com/iceream" target="_blank"><img class="github"
+                                src="/static/public/images/github-black.png" alt=""></a>
+                    </div>
+                </div>
+                <!-- 3.导航 -->
+                <ul id="menu-pc">
+                    <li class="menu-pc-item">
+                        <img src="/static/public/images/menu/home-black.png" alt="home" class="sidebar-icon">
+                        <a href="">主页</a>
+                    </li>
+                    <li class="menu-pc-item">
+                        <img src="/static/public/images/menu/publish-black.png" alt="home" class="sidebar-icon">
+                        <a href="/static/views/publish.html">发布</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- 二、右侧，内容 -->
+            <div id="content">
+                <ul class="content-ul">
+
+                </ul>
+                <!-- 2.分页 -->
+                <div id="fenye">
+                    <div class="prev"> ＜ </div>
+                    <ul class="fenye-ul">
+                        <li class="fenye-li">
+                            <!-- <a href="/?page={{i}}" class="current">{{i}}</a> -->
+                        </li>
+                    </ul>
+                    <div class="next"> ＞ </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部信息 -->
+        <div id="footer">
+            <span>备案号：</span>
+            <a href="http://beian.miit.gov.cn/" id="beian">桂ICP备19009961号</a>
+        </div>
+        <!-- 右下角工具栏，夜间模式切换，返回顶部 -->
+        <div id="tools">
+            <div>
+                <a href="#"><img class="up" src="/static/public/images/up.png" alt=""></a>
+            </div>
+            <div>
+                <img class="day-night" src="/static/public/images/day-night.png" alt="">
+            </div>
+        </div>
+    </div>
+</body>
+<script src="/static/public/js/index.js"></script>
+<!-- <script src="/static/public/js/skin.js"></script> -->
+<!-- <script src="/static/public/js/fenye.js"></script> -->
+<script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script>
+
+</script>
+
+</html>
