@@ -84,6 +84,8 @@ function renderAPage(responseText) {
     for (let i = 0; i < onePageData.length; i++) {
         // 改变时间格式 2020-08-22T06:08:44.000Z
         let time = onePageData[i].time;
+        // console.log(onePageData[i].time);
+
         time = time.split("T")[0] + " " + time.split("T")[1].split(".")[0]
 
         let contentmd = onePageData[i].contentmd;

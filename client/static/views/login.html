@@ -41,33 +41,43 @@
             let username = document.querySelector(".username").value;
             let password = document.querySelector(".password").value;
             // console.log(username, password);
-            axios.post("/api/loginHandle", {
-                username,
-                password
-            }).then((res) => {
-                // console.log(res.headers.authorization);
-                if (res.data !== "登录失败") {
-                    // console.log(data);
-                    let user = JSON.parse(res.config.data)
-                    localStorage.setItem("username", user.username)
-                    localStorage.setItem("authorization", res.headers.authorization)
-                    location.href = "/static/views/publish.html"
-                } else {
-                    console.log(res.config.data);
-                    // alert(res.data)
-                    let user = JSON.parse(res.config.data)
-                    console.log(user.username);
+            // axios.post("/api/loginHandle", {
+            //     username,
+            //     password
+            // }).then((res) => {
+            //     // console.log(res.headers.authorization);
+            //     if (res.data !== "登录失败") {
+            //         // console.log(data);
+            //         let user = JSON.parse(res.config.data)
+            //         localStorage.setItem("username", user.username)
+            //         localStorage.setItem("authorization", res.headers.authorization)
+            //         location.href = "/static/views/publish.html"
+            //     } else {
+            //         console.log(res.config.data);
+            //         // alert(res.data)
+            //         let user = JSON.parse(res.config.data)
+            //         console.log(user.username);
 
+            //     }
+            // })
+            let xhr = new XMLHttpRequest();
+            xhr.open("post", "/api/loginHandle", true)
+            xhr.onload = function () {
+                let res = JSON.parse(xhr.responseText);
+                res = JSON.parse(res);
+                console.log(res.msg);
+                if (res.msg === "success") {
+                    console.log(1);
+                    console.log(this.getResponseHeader("authorization"));
+                    localStorage.setItem("username", res.username);
+                    localStorage.setItem("authorization", this.getResponseHeader("authorization"));
+                    location.href = "/static/views/publish.html";
+                } else {
+                    alert("登录失败")
                 }
-            })
-            // let xhr = new XMLHttpRequest();
-            // xhr.open("post", "/api/login", true)
-            // xhr.onload = function () {
-            //     console.log("authorization:----");
-            //     console.log(this.getResponseHeader("authorization"));
-            //     localStorage.setItem("authorization", this.getResponseHeader("authorization"))
-            // }
-            // xhr.send(`{"username":"${username}","password":"${password}"}`);
+
+            }
+            xhr.send(`{"username":"${username}","password":"${password}"}`);
         })
     </script>
 </body>

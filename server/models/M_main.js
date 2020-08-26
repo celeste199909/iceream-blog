@@ -3,7 +3,6 @@ let connection;
 
 (async function () {
     connection = await mysql2.createConnection({
-        // 本地数据库
         host: "localhost",
         port: "3306",
         database: "test",

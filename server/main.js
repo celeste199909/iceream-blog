@@ -88,11 +88,14 @@ router.get("/login", async ctx => {
 })
 router.post("/loginHandle", async (ctx, next) => {
     let data = ctx.request.body;
-    // console.log(ctx.request.body);
+    data = JSON.parse(data)
+    console.log(data);
     let [user] = await db.getAUser(data.username, data.password);
 
     if (user.length === 0) {
-        ctx.body = "登录失败"
+        ctx.body = {
+            msg: "fail"
+        }
     } else {
         let id = user[0].id;
         let token = jsonWebToken.sign({
@@ -104,8 +107,9 @@ router.post("/loginHandle", async (ctx, next) => {
         ctx.set("authorization", token)
 
         ctx.body = {
-            id: user.id,
-            username: user.username
+            msg: "success",
+            id: id,
+            username: data.username
         }
         // ctx.redirect("http://localhost:80/static/views/publish.html")
     }
@@ -120,17 +124,23 @@ router.post("/verify", async (ctx) => { // ctx.body = fs.readFileSync("")
     // ctx.redirect("http://localhost:80/static/views/publish.html");
     let username = data.username;
     let [sqlToken] = await db.getAToken(username);
-    sqlToken = sqlToken[0].token;
-    let token = data.token;
+    if (sqlToken.length !== 0) {
+        sqlToken = sqlToken[0].token;
+        let token = data.token;
+        if (sqlToken === token) {
+            // ctx.redirect("http://localhost:80/static/views/publish.html");
+            ctx.body = "verify ok";
+        } else if (sqlToken !== token) {
+            // ctx.redirect("http://localhost:80/static/views/login.html");
+            ctx.body = "verify err";
+        }
+    } else {
+        ctx.body = "verify err"
+    }
+    console.log(sqlToken);
     // console.log(1, token);
     // console.log(2, ctx.request.body);
-    if (sqlToken === token) {
-        // ctx.redirect("http://localhost:80/static/views/publish.html");
-        ctx.body = "ok";
-    } else if (sqlToken !== token || token == {}) {
-        // ctx.redirect("http://localhost:80/static/views/login.html");
-        ctx.body = "/api/login";
-    }
+
 })
 // 路由中间件
 server.use(router.routes())

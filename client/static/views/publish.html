@@ -28,8 +28,8 @@
         </textarea>
     </div>
     <div id="btn">
-        <!-- <a class="btn1">get md</a>
-        <a class="btn2">get html</a> -->
+        <a class="btn1">get md</a>
+        <a class="btn2">get html</a>
 
         <a class="btn3">发布</a>
         <a href="/static/views/index.html">首页</a>
@@ -86,16 +86,17 @@
             })
             $(".btn2").click(() => {
                 // 获取html
-                let htmlCode = document.getElementsByClassName("editormd-preview-container")[0]
-                    .innerHTML;
+                // let htmlCode = document.getElementsByClassName("editormd-preview-container")[0]
+                //     .innerHTML;
+                let htmlCode = editor.getHTML();
+
                 console.log(htmlCode);
             })
             $(".btn3").click(() => {
                 // 获取md
                 let mdCode = editor.getMarkdown();
                 // 获取html
-                let htmlCode = document.getElementsByClassName("editormd-preview-container")[0]
-                    .innerHTML;
+                let htmlCode = editor.getHTML();
                 $.ajax({
                     method: "POST",
                     url: "/api/addAPost",
@@ -112,20 +113,21 @@
             })
         });
     </script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
         window.onload = function () {
-            let token = localStorage.getItem("authorization");
+            let token = "";
+            token = localStorage.getItem("authorization");
 
             let xhr = new XMLHttpRequest();
-            xhr.open("post", "/api/verify", true)
+            xhr.open("post", "/api/verify", true);
             xhr.onload = function () {
-                // console.log(xhr.responseText);
-                if (xhr.responseText !== "ok") {
-                    location.href = xhr.responseText
+                console.log(xhr.responseText);
+                if (xhr.responseText !== "verify ok") {
+                    location.href = "/static/views/login.html";
+                    // console.log("verify err");
                 }
             }
-            let username = localStorage.getItem("username")
+            let username = localStorage.getItem("username");
             xhr.send(`{"token":"${token}","username":"${username}"}`);
         }
     </script>
