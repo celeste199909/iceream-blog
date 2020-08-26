@@ -9,14 +9,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@koa/cors": "^3.1.0",
+    "jsonwebtoken": "^8.5.1",
     "koa": "^2.13.0",
     "koa-body": "^4.2.0",
-    "koa-nunjucks-2": "^3.0.2",
+    "koa-jwt": "^4.0.0",
     "koa-router": "^9.1.0",
     "koa-static-cache": "^5.1.4",
-    "moment": "^2.27.0",
-    "mysql2": "^2.1.0",
-    "vue": "^2.6.11",
-    "vue-server-renderer": "^2.6.11"
+    "mysql2": "^2.1.0"
   }
 }

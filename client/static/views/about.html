@@ -35,6 +35,7 @@
         <a href="/static/views/index.html">🚤首页</a>
     </div>
     <div id="editormd-view">
+        <h1>关于</h1>
     </div>
     <script src="https://cdn.bootcss.com/jquery/2.2.3/jquery.min.js"></script>
     <script src="/static/editormd/lib/marked.min.js"></script>
@@ -57,28 +58,7 @@
         });
     </script>
 
-    <!-- 右下角工具栏，夜间模式切换，返回顶部 -->
-    <div id="tools">
-        <div>
-            <a href="#"><img class="up" src="/static/public/images/up.png" alt=""></a>
-        </div>
-        <div class="style-btn">
-            <img class="day-night" src="/static/public/images/day-night.png" alt="">
-        </div>
-    </div>
-</body>
-<!-- <script src="/static/public/js/skin.js"></script> -->
-<script>
-    let mdView = document.querySelector("#editormd-view")
-    let query = location.href.split("?")[1].split("=")
-    let id = query[1]
-    let xhr = new XMLHttpRequest()
-    xhr.open("get", `/api/post/${id}`, true)
-    xhr.onload = function () {
 
-        mdView.innerHTML = xhr.responseText
-    }
-    xhr.send()
-</script>
+</body>
 
 </html>

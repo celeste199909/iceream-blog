@@ -19,22 +19,22 @@
   margin: 1rem 0;
   color: skyblue;
 }
-#main #login form {
+#main #login .container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-#main #login form .form-item {
+#main #login .container .form-item {
   width: 16rem;
   height: 3rem;
 }
-#main #login form .form-item .form-input {
+#main #login .container .form-item .form-input {
   width: 100%;
   height: 2.2rem;
   text-indent: 1rem;
 }
-#main #login form .form-item .form-button {
+#main #login .container .form-item .form-button {
   width: 100%;
   height: 2.2rem;
   color: #fff;

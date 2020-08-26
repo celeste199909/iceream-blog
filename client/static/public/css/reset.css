@@ -23,3 +23,48 @@ a {
   text-decoration: none;
   color: inherit;
 }
+#tools {
+  position: fixed;
+  width: 40px;
+  height: 80px;
+  bottom: 48px;
+  right: 32px;
+}
+#tools > * {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(#ffffff, #ffffff, #ffffff, 1);
+  cursor: pointer;
+}
+#tools .up {
+  width: 40px;
+  height: 40px;
+  padding: 3.2px;
+}
+#tools .day-night {
+  width: 40px;
+  height: 40px;
+}
+@media screen and (max-width: 560px) {
+  #tools {
+    position: fixed;
+    width: 25px;
+    height: 25px;
+    bottom: 48px;
+    right: 32px;
+  }
+  #tools > * {
+    width: 25px;
+    height: 25px;
+    background-color: rgba(#ffffff, #ffffff, #ffffff, 1);
+    cursor: pointer;
+  }
+  #tools .up {
+    width: 40px;
+    height: 40px;
+    padding: 3.2px;
+  }
+  #tools .day-night {
+    display: none;
+  }
+}

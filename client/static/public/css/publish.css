@@ -1,0 +1,24 @@
+#btn {
+  margin: 1rem 5%;
+  display: flex;
+  justify-content: start;
+  align-content: center;
+}
+#btn a {
+  width: 10rem;
+  height: 2.4rem;
+  text-align: center;
+  line-height: 2.4rem;
+  margin-right: 1rem;
+  border: 2px solid #F5F5F5;
+  border-radius: 2px;
+  text-decoration: none;
+  font-family: monospace;
+  font-size: 1.5rem;
+  font-weight: lighter;
+  color: #000;
+  cursor: pointer;
+}
+#btn a:hover {
+  background-color: #F5F5F5;
+}

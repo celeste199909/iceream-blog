@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "koa-router": "^9.4.0",
+    "koa-server-http-proxy": "^0.1.0",
     "koa-static-cache": "^5.1.4"
   }
 }

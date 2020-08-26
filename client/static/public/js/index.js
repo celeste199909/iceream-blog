@@ -2,121 +2,161 @@
 // let url = "http://localhost:8080";
 
 (function () {
+    // 三明治菜单按钮，显示或者隐藏菜单
     menuToggle();
-    getAllPosts();
+    // 获取一页的数据
+    getAPageData();
+    // 上一页下一页按钮
+    preNextBtn();
+    // console.log(1);
 })();
 
-
-// 获取所有博客数据
-function getAllPosts() {
-    let contentUl = document.querySelector(".content-ul")
-    // console.log("all post");
+// 获取所有一页数据
+function getAPageData(page = 1) {
     let xhr = new XMLHttpRequest();
-    xhr.open("get", "http://localhost:8080/getAllPosts", true);
-
+    xhr.open("get", `/api/getAPageData?page=${page}`, true);
     xhr.onload = function () {
         let data = JSON.parse(xhr.responseText)
+        let pagesCount = data.pagesCount,
+            currentPage = data.currentPage;
         // 渲染博客列表
-        for (let i = 0; i < data.length; i++) {
-            // console.log(result[i]);
-            let li = document.createElement("li");
-            li.innerHTML = `
-                <a class="title" href="http://localhost:8080/post/${data[i].id}">${data[i].contentmd.slice(0,20)}</a>
-                <p class="profile">
-                    ${data[i].contentmd}
-                    <a href="http://localhost:8080/post/${data[i].id}" class="dot">...</a>
-                </p>
-                <div class="foot">
-                    <div class="foot-item">${data[i].time}</div>
-                </div>`
-            contentUl.appendChild(li)
-        }
-    };
+        renderAPage(xhr.responseText);
+        // 渲染分页
+        renderFenye(pagesCount, currentPage)
+    }
     xhr.send();
 }
 
 // 菜单显示/隐藏
 function menuToggle() {
     let menuBtn = document.querySelector(".menu-btn");
-    let menu = document.querySelector("#menu");
+    let menuMoblie = document.querySelector("#menu-mobile");
     menuBtn.addEventListener("click", () => {
-        let isShow = menu.style.getPropertyValue("display");
-
+        let isShow = menuMoblie.style.getPropertyValue("display");
         if (isShow === "block")
-            menu.style.display = "none";
+            menuMoblie.style.display = "none";
         else
-            menu.style.display = "block";
+            menuMoblie.style.display = "block";
     })
 }
+// 上一页下一页按钮
+function preNextBtn() {
 
-// 分页
-document.querySelector(".prev").onclick = function (e) {
-    e.preventDefault()
-    let current = document.querySelector(".current").innerHTML;
-    current = Number(current)
-    if (current > 1) {
-        let pre = current - 1;
-        window.location.href = `/?page=${pre}`;
-    } else {
-        console.log("没有上一页了");
+    document.querySelector(".prev").onclick = function (e) {
+        e.preventDefault()
+        let current = document.querySelector(".current").innerHTML;
+        current = Number(current)
+        if (current > 1) {
+            let pre = current - 1;
+            let xhr = new XMLHttpRequest();
+            xhr.open("get", `/api/getAPageData/?page=${pre}`, true)
+            xhr.onload = function () {
+                getAPageData(pre)
+            }
+            xhr.send()
+        } else {
+            console.log("没有上一页了");
+        }
+    }
+    document.querySelector(".next").onclick = function (e) {
+        e.preventDefault()
+        let current = document.querySelector(".current").innerHTML;
+        current = Number(current)
+        let lists = document.querySelectorAll(".fenye-li");
+        let limitNum = lists.length;
+        if (current < limitNum) {
+            let next = current + 1;
+            getAPageData(next)
+        } else {
+            console.log("没有下一页了");
+        }
     }
 }
-document.querySelector(".next").onclick = function (e) {
-    e.preventDefault()
-    let current = document.querySelector(".current").innerHTML;
-    current = Number(current)
 
-    let lists = document.querySelectorAll(".list-item");
-    let limitNum = lists.length;
+// 渲染一页
+function renderAPage(responseText) {
+    let contentUl = document.querySelector(".content-ul");
+    let fenyeUl = document.querySelector(".fenye-ul");
+    contentUl.innerHTML = ""
+    fenyeUl.innerHTML = ""
+    let data = JSON.parse(responseText)
+    let onePageData = data.onePageData;
+    for (let i = 0; i < onePageData.length; i++) {
+        // 改变时间格式 2020-08-22T06:08:44.000Z
+        let time = onePageData[i].time;
+        time = time.split("T")[0] + " " + time.split("T")[1].split(".")[0]
 
-    if (current < limitNum) {
-        let next = current + 1;
-        window.location.href = `/?page=${next}`;
-    } else {
-        console.log("没有下一页了");
+        let contentmd = onePageData[i].contentmd;
+        // console.log(contentmd);
+        let id = onePageData[i].id;
+
+        for (let i = 0; i < 30; i++) {
+            contentmd = contentmd.replace('#', "")
+            contentmd = contentmd.replace('*', "")
+            contentmd = contentmd.replace('-', "")
+            contentmd = contentmd.replace('[TOC]', "")
+        }
+
+        // 创建li并插到ul中
+        let li = document.createElement("li");
+        li.classList.add("content-li")
+        li.innerHTML = `
+            <a class="title" href="/static/views/detail.html?id=${id}">${contentmd.slice(0,15)}</a>
+            <p class="profile">
+                ${contentmd.slice(0,200)}
+                <a href="/static/views/detail.html?id=${id}" class="dot">...</a>
+            </p>
+            <div class="foot">
+                <div class="foot-item">${time}</div>
+            </div>`
+        contentUl.appendChild(li)
     }
 }
+// 分页list
+function renderFenye(pagesCount, currentPage) {
+    let contentUl = document.querySelector(".content-ul");
+    let fenyeUl = document.querySelector(".fenye-ul");
+    for (let i = 0; i < pagesCount; i++) {
+        // console.log(pagesCount);
+        let li = document.createElement("li");
+        li.innerHTML = `<a >${i + 1}</a> `
+        li.classList.add("fenye-li")
 
+        if (currentPage == i + 1) {
+            li.firstChild.classList.add("current")
+        }
+        li.addEventListener("click", (e) => {
+            e.preventDefault()
+            contentUl.innerHTML = "";
+            fenyeUl.innerHTML = "";
+            getAPageData(i + 1)
+        })
+        fenyeUl.appendChild(li)
+    };
+}
+// 创建节点 菜单
 
-// 事件戳转时间
-// function time(time = +new Date()) {
-//     var date = new Date(time + 8 * 3600 * 1000); // 增加8小时
-//     return date.toJSON().substr(0, 19).replace('T', ' ');
-// }
+let menuObj = {
+    "主页-home": "/static/views/index.html",
+    "关于-about": "/static/views/about.html",
+    "归档-archive": "/static/views/archive.html",
+    "发布-publish": "/static/views/publish.html"
+}
+let menuMoblieUl = document.querySelector(".menu-mobile-ul")
+let menuPcUl = document.querySelector("#menu-pc");
+for (let key in menuObj) {
+    let name = key.split("-")
 
-// module.exports = {
-// showAllPosts: async (ctx, next) => {
-//     let posts = await db.getPosts()
-//     console.log(posts);
-//     // posts = JSON.parse(JSON.stringify(posts))
-//     // posts.forEach(element => {
-//     //     // 存进数据库的tags是字符串，所以要转成数组
-//     //     element.tags = JSON.parse(element.tags)
-//     //     element.time = new Date(element.time).getTime()
-//     //     element.time = time(element.time);
-//     // });
-//     // 分页 类似二维数组
-//     // [
-//     //     [1, 2, 3, 4, 5, 6, 7, 8]
-//     //     [9, 10, 11]
-//     // ]
+    let mli = document.createElement("li");
+    mli.classList.add("menu-mobile-li");
+    mli.innerHTML = `<img src="/static/public/images/menu/${name[1]}-1.png" class="sidebar-icon">
+                    <a href="${menuObj[key]}">${name[0]}</a>`;
+    menuMoblieUl.appendChild(mli);
 
-//     // let onePage = 4; // 一页显示的数量4个
-//     // let currentPage = ctx.query.page || 1; // 当前页 客户端传 | 默认1
+    let pli = document.createElement("li");
+    pli.classList.add("menu-pc-item");
+    pli.innerHTML = `<img src="/static/public/images/menu/${name[1]}-1.png" class="sidebar-icon">
+                    <a href="${menuObj[key]}">${name[0]}</a>`;
 
-//     // let start = (currentPage - 1) * onePage; // 本页开始的下标 (当前页数 - 1) * 一页显示的数量
-//     // let end = start + onePage; // 本页结束的下标，就是开始下标 + 结束下标
-
-//     // let pagesCount = Math.ceil(posts.length / onePage) // 总共有多少页 数组长度 / 一页显示的数量
-//     // // console.log(pagesCount);
-//     // let onePageData = posts.slice(start, end) // 本页应该渲染的数据
-//     // // console.log(onePageData);
-//     // await ctx.render("index", {
-//     //     // posts: posts,
-//     //     pagesCount: pagesCount,
-//     //     onePageData: onePageData,
-//     //     currentPage: currentPage
-//     // })
-//     ctx.body = ""
-// },
-// }
+    menuPcUl.appendChild(pli);
+}

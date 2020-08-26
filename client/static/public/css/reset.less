@@ -39,3 +39,62 @@ a {
     text-decoration: none;
     color: inherit;
 }
+
+
+// 右下角工具
+#tools {
+    position: fixed;
+    width: 40px;
+    height: 80px;
+    bottom: 48px;
+    right: 32px;
+
+    &>* {
+        width: 40px;
+        height: 40px;
+        // opacity: 0;
+        background-color: rgba(rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), 1);
+        cursor: pointer;
+    }
+
+    .up {
+        width: 40px;
+        height: 40px;
+        padding: 3.2px;
+    }
+
+    .day-night {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+
+@media screen and (max-width: 560px) {
+    #tools {
+        position: fixed;
+        width: 25px;
+        height: 25px;
+        bottom: 48px;
+        right: 32px;
+
+        &>* {
+            width: 25px;
+            height: 25px;
+            // opacity: 0;
+            background-color: rgba(rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), 1);
+            cursor: pointer;
+        }
+
+        .up {
+            width: 40px;
+            height: 40px;
+            padding: 3.2px;
+        }
+
+        .day-night {
+            display: none;
+        }
+    }
+
+}

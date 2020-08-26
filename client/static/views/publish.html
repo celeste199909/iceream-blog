@@ -4,8 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="'iceream的练习册'是一个个人网站，记录了一些前端的小项目。">
+    <meta name="keywords" content="iceream的练习册,JavaScript,前端,个人网站,CSS,iceream">
+    <meta name="theme-color" content="#fff" />
+    <title>发布</title>
+    <link rel="shortcut icon" href="/static/public/images/favicon.ico" type="image/x-icon">
     <title>Document</title>
-    <!-- <link rel="stylesheet" href="/static/public/css/publish.css"> -->
+    <link rel="stylesheet" href="/static/public/css/publish.css">
     <link rel="stylesheet" href="/static/editormd/css/editormd.css" />
     <style>
         body {
@@ -17,26 +22,25 @@
 
 <body>
     <div id="test-editor">
-        <textarea style="display:none;">### 关于 Editor.md
+        <textarea style="display:none;"># 关于 Editor.md
     
-    **Editor.md** 是一款开源的、可嵌入的 Markdown 在线编辑器（组件），基于 CodeMirror、jQuery 和 Marked 构建。
+    Editor.md 是一款开源的、可嵌入的 Markdown 在线编辑器（组件），基于 CodeMirror、jQuery 和 Marked 构建。
         </textarea>
     </div>
-    <button class="btn1">get md</button>
-    <button class="btn2">get html</button>
+    <div id="btn">
+        <!-- <a class="btn1">get md</a>
+        <a class="btn2">get html</a> -->
 
-    <button class="btn3">post</button>
-    <a href="/static/views/index.html">index</a>
-    <a href="/static/views/detail.html">detail</a>
-
-
+        <a class="btn3">发布</a>
+        <a href="/static/views/index.html">首页</a>
+    </div>
     <script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
     <script src="/static/editormd/editormd.min.js"></script>
     <script type="text/javascript">
         $(function () {
             var editor = editormd("test-editor", {
                 width: "90%",
-                height: "80%",
+                height: "90%",
                 path: '/static/editormd/lib/',
                 theme: "default",
                 previewTheme: "default",
@@ -45,7 +49,7 @@
                 //syncScrolling : false,
                 saveHTMLToTextarea: true, // 保存 HTML 到 Textarea
                 searchReplace: true,
-                //watch : false,                // 关闭实时预览
+                watch: false, // 关闭实时预览
                 htmlDecode: "style,script,iframe|on*", // 开启 HTML 标签解析，为了安全性，默认不开启    
                 //toolbar  : false,             //关闭工具栏
                 //previewCodeHighlight : false, // 关闭预览 HTML 的代码块高亮，默认开启
@@ -64,7 +68,7 @@
                 imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
                 imageUploadURL: "./php/upload.php",
                 onload: function () {
-                    console.log('onload', this);
+                    // console.log('onload', this);
                     //this.fullscreen();
                     //this.unwatch();
                     //this.watch().fullscreen();
@@ -94,21 +98,36 @@
                     .innerHTML;
                 $.ajax({
                     method: "POST",
-                    url: "http://localhost:8080/addAPost",
+                    url: "/api/addAPost",
                     data: {
                         contentmd: mdCode,
                         contenthtml: htmlCode
                     },
                     success: function (result) {
                         // $("#weather-temp").html("<strong>" + result + "</strong> degrees");
+                        alert("发布成功!");
                         console.log("提交成功：", result);
                     }
                 });
             })
         });
     </script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
+        window.onload = function () {
+            let token = localStorage.getItem("authorization");
 
+            let xhr = new XMLHttpRequest();
+            xhr.open("post", "/api/verify", true)
+            xhr.onload = function () {
+                // console.log(xhr.responseText);
+                if (xhr.responseText !== "ok") {
+                    location.href = xhr.responseText
+                }
+            }
+            let username = localStorage.getItem("username")
+            xhr.send(`{"token":"${token}","username":"${username}"}`);
+        }
     </script>
 </body>
 

@@ -1,94 +1,75 @@
-let btns = document.querySelectorAll(".day-night"),
-    style = document.querySelector("#style"),
-    github = document.querySelector(".github"),
-    sidebarIcons = document.querySelectorAll(".sidebar-icon")
+let btns = document.querySelectorAll(".style-btn");
+
+let style = document.querySelector("#style");
+
+let arr = ["home", "about", "archive", "publish"]
+
+sidebarIcons = document.querySelectorAll(".sidebar-icon")
 
 window.onload = function () {
-    reload()
+    reloadStyle();
 }
 
-function reload() {
-    let isNight = localStorage.getItem("isNight");
-    if (isNight === "No") {
-        style.setAttribute("href", "/static/public/css/index.css")
-        // Github
-        github.setAttribute("src", "/static/public/images/github-black.png")
-        // sidebar menu img
-        sidebarIcons[0].setAttribute("src", "/static/public/images/menu/home-black.png")
-        sidebarIcons[1].setAttribute("src", "/static/public/images/menu/about-black.png")
-        sidebarIcons[2].setAttribute("src", "/static/public/images/menu/tag-black.png")
-        sidebarIcons[3].setAttribute("src", "/static/public/images/menu/search-black.png")
-        sidebarIcons[4].setAttribute("src", "/static/public/images/menu/publish-black.png")
-        sidebarIcons[5].setAttribute("src", "/static/public/images/menu/home-black.png")
-        sidebarIcons[6].setAttribute("src", "/static/public/images/menu/about-black.png")
-        sidebarIcons[7].setAttribute("src", "/static/public/images/menu/tag-black.png")
-        sidebarIcons[8].setAttribute("src", "/static/public/images/menu/search-black.png")
-        sidebarIcons[9].setAttribute("src", "/static/public/images/menu/publish-black.png")
-
-
-    } else if (isNight === "Yes") {
-        style.setAttribute("href", "/static/public/css/index-night.css")
-
-        // Github
-        github.setAttribute("src", "/static/public/images/github-white.png")
-        // sidebar menu img
-        sidebarIcons[0].setAttribute("src", "/static/public/images/menu/home-white.png")
-        sidebarIcons[1].setAttribute("src", "/static/public/images/menu/about-white.png")
-        sidebarIcons[2].setAttribute("src", "/static/public/images/menu/tag-white.png")
-        sidebarIcons[3].setAttribute("src", "/static/public/images/menu/search-white.png")
-        sidebarIcons[4].setAttribute("src", "/static/public/images/menu/publish-white.png")
-        sidebarIcons[5].setAttribute("src", "/static/public/images/menu/home-white.png")
-        sidebarIcons[6].setAttribute("src", "/static/public/images/menu/about-white.png")
-        sidebarIcons[7].setAttribute("src", "/static/public/images/menu/tag-white.png")
-        sidebarIcons[8].setAttribute("src", "/static/public/images/menu/search-white.png")
-        sidebarIcons[9].setAttribute("src", "/static/public/images/menu/publish-white.png")
-
-
-    }
-}
-
-function changeStyle() {
-    let isNight = localStorage.getItem("isNight");
-    if (isNight === "Yes") {
-        style.setAttribute("href", "/static/public/css/index.css")
-
-        github.setAttribute("src", "/static/public/images/github-black.png")
-        // sidebar menu img
-        sidebarIcons[0].setAttribute("src", "/static/public/images/menu/home-black.png")
-        sidebarIcons[1].setAttribute("src", "/static/public/images/menu/about-black.png")
-        sidebarIcons[2].setAttribute("src", "/static/public/images/menu/tag-black.png")
-        sidebarIcons[3].setAttribute("src", "/static/public/images/menu/search-black.png")
-        sidebarIcons[4].setAttribute("src", "/static/public/images/menu/publish-black.png")
-        sidebarIcons[5].setAttribute("src", "/static/public/images/menu/home-black.png")
-        sidebarIcons[6].setAttribute("src", "/static/public/images/menu/about-black.png")
-        sidebarIcons[7].setAttribute("src", "/static/public/images/menu/tag-black.png")
-        sidebarIcons[8].setAttribute("src", "/static/public/images/menu/search-black.png")
-        sidebarIcons[9].setAttribute("src", "/static/public/images/menu/publish-black.png")
-
-        // 并且把状态改成白天
-        localStorage.setItem("isNight", "No")
-    } else if (isNight === "No" || isNight === null) {
-        style.setAttribute("href", "/static/public/css/index-night.css")
-
-        // Github
-        github.setAttribute("src", "/static/public/images/github-white.png")
-        // sidebar menu img
-        sidebarIcons[0].setAttribute("src", "/static/public/images/menu/home-white.png")
-        sidebarIcons[1].setAttribute("src", "/static/public/images/menu/about-white.png")
-        sidebarIcons[2].setAttribute("src", "/static/public/images/menu/tag-white.png")
-        sidebarIcons[3].setAttribute("src", "/static/public/images/menu/search-white.png")
-        sidebarIcons[4].setAttribute("src", "/static/public/images/menu/publish-white.png")
-        sidebarIcons[5].setAttribute("src", "/static/public/images/menu/home-white.png")
-        sidebarIcons[6].setAttribute("src", "/static/public/images/menu/about-white.png")
-        sidebarIcons[7].setAttribute("src", "/static/public/images/menu/tag-white.png")
-        sidebarIcons[8].setAttribute("src", "/static/public/images/menu/search-white.png")
-        sidebarIcons[9].setAttribute("src", "/static/public/images/menu/publish-white.png")
-
-        localStorage.setItem("isNight", "Yes")
-    }
-}
 btns.forEach(btn => {
     btn.onclick = () => {
-        changeStyle()
+        // 根据路径选择加载css
+        changeStyle(location.pathname);
     }
 })
+
+function changeStyle(pathname) {
+    switch (pathname) {
+        case "/static/views/index.html":
+            index();
+            break;
+            // case "/static/views/detail.html":
+            //     detail();
+            //     break;
+    }
+
+    function index() {
+        let styleStatus = localStorage.getItem("styleStatus");
+        // 如果当前是黑夜
+        if (styleStatus === "night") {
+            // 设置白天模式
+            style.setAttribute("href", "/static/public/css/index.css")
+            setImgColor(styleStatus);
+            // 并且把状态改成白天
+            localStorage.setItem("styleStatus", "daytime")
+
+            // 如果当前是白天或者null（即默认的白天）
+        } else if (styleStatus === "daytime" || styleStatus === null) {
+            // 那么点击时切换成黑夜
+            style.setAttribute("href", "/static/public/css/index-night.css")
+            setImgColor(styleStatus)
+            // 并且把状态改成黑夜
+            localStorage.setItem("styleStatus", "night")
+        }
+    }
+}
+
+function setImgColor(styleStatus) {
+    if (styleStatus === "night") {
+        for (let i = 0; i < arr.length; i++) {
+            // console.log(i);
+            sidebarIcons[i].setAttribute("src", `/static/public/images/menu/${arr[i]}-1.png`)
+        }
+    } else if (styleStatus === "daytime" || styleStatus === null) {
+        for (let i = 0; i < arr.length; i++) {
+            sidebarIcons[i].setAttribute("src", `/static/public/images/menu/${arr[i]}-0.png`)
+        }
+    }
+}
+
+function reloadStyle() {
+    let styleStatus = localStorage.getItem("styleStatus");
+    if (styleStatus === "daytime") {
+        styleStatus = "night";
+        style.setAttribute("href", "/static/public/css/index.css")
+        setImgColor(styleStatus)
+    } else if (styleStatus === "night") {
+        styleStatus = "daytime";
+        style.setAttribute("href", "/static/public/css/index-night.css")
+        setImgColor(styleStatus)
+    }
+}
